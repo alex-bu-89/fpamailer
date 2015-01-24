@@ -68,8 +68,4 @@ braucht den controller nciht kennen
 macht darstellungslogick in Z101 +-3
 bsser den ordner von der fassade holen, die ihn im filemanager verwalten lässt
 
-
-
-
- test
  
