@@ -1,0 +1,75 @@
+branche expand event nicht bei jedem knoten angemeldet
+-> nur an wurzelknoten
+-> mit changeItemIcon zusammenbasteln
+
+loadTree
+-> nach configureTree
+
+configureMenue
+-> eventhandling block in eigene Methode (keine annonymen instanzen von eventhandler)
+
+menue items die selbe instanz des eventhandlers geben (nicht annonym)
+gegen aufschrift des menue items prüfen um beliebige anzahl
+
+menubar eventhandler mit 2 schleifen (so das beliebige eventhandler an beliebige menues gehängt werden können)
+
+in loadContent den topfolder nicht neu setzen
+
+es reicht wenn der maincontroller die History liste hat (im moment doppelt)
+
+emails werden jedes mal neu geladen
+
+foldermanager -> nur ordner
+emailmanager -> kann nur emails laden (also nuuuur beim klick event)
+
+
+
+Todo von 07.01.2015
+
+Email Klasse mit der aus übung 4 moodle austauschen => |fetrig|
+
+Email Atribut Filter data überflüssig => |keine Ahnung|
+
+top folder soll nicht an mehreren stellen verwaltet werden. => |keine Ahnung|
+
+controler Z280 verwaltet folder das ist unfug
+soll eher so: applicationlogick gibt aufruf an mail manager weiter und der kümmert sich darum was nachgeladen wird => |keine Ahnung|
+
+Z289
+topfodler von aplogick und macht damit irgendwas  => |fetrig.. denke ich|
+Soll: einmal liste der Emails holen und dann was damit machen.
+mail atrtribute werden bei jedem durchlauf neu geholt
+
+controller 374 eventhandler in methode auslagern 
+
+menu event handler 210 in methoden auslagern
+
+263 anyonypme klasse change Listener ist ganz böse
+soll: per lambdaexpression
+treview get selection modle .selectet item property und da dann listener anmelden
+
+Textsuche
+filterd list überflüssig -> direkt in sortefList
+filterd data list local halten
+applogick Z64 contains(pattern) ist besser |fetrig|
+
+controller
+Z283 nicht den namen wirklich verändern sondern .toString überschreiben 
+und dann darum kümmern, das kein (0) angezeigt wird
+also ein flag hinzufügen ob der ordner schon selektiert wurde
+
+save mail
+namen -> einfach durnummerieren sonst scheiterts an komsichen zeichen
+
+contoller 59 refernz auf interface und nicht auf die eigentliche klasse
+
+AoolicationLogick
+braucht den controller nciht kennen
+macht darstellungslogick in Z101 +-3
+bsser den ordner von der fassade holen, die ihn im filemanager verwalten lässt
+
+
+
+
+ 
+ 

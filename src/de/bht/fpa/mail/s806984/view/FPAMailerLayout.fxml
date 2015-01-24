@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="VBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.bht.fpa.mail.s806984.controller.FPAMailerLayoutController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <MenuBar VBox.vgrow="ALWAYS">
+        <menus>
+          <Menu mnemonicParsing="false" text="Account">
+               <items>
+                  <Menu fx:id="openAccount" mnemonicParsing="false" text="Open Account" />
+                  <Menu fx:id="editAccount" mnemonicParsing="false" text="Edit Account" />
+                  <MenuItem fx:id="newAccount" mnemonicParsing="false" text="New Account" />
+               </items></Menu>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="openFileChooser" mnemonicParsing="false" text="Open" />
+                  <MenuItem fx:id="folderChooserHistory" mnemonicParsing="false" text="History" />
+                  <MenuItem fx:id="saveFileChooser" mnemonicParsing="false" text="Save" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.32687927107061504" prefHeight="580.0" prefWidth="880.0" VBox.vgrow="ALWAYS">
+         <items>
+            <TreeView fx:id="treeViewBox" prefHeight="200.0" prefWidth="200.0" />
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="578.0" prefWidth="711.0">
+              <items>
+                <AnchorPane>
+                     <children>
+                        <Text layoutX="12.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="437.5894317626953" />
+                        <TextField fx:id="filter" layoutX="68.0" layoutY="9.0" prefHeight="26.0" prefWidth="438.0" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="9.0" />
+                        <AnchorPane layoutY="28.0" prefHeight="245.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                           <children>
+                              <TableView fx:id="table" layoutY="17.0" prefHeight="261.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Text fx:id="countEmails" layoutX="521.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="51.643280029296875" AnchorPane.rightAnchor="13.356719970703125" />
+                     </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="587.0">
+                     <children>
+                        <Pane layoutX="-33.0" layoutY="-43.0" prefHeight="124.0" prefWidth="587.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="text_sender" layoutX="104.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="text_subject" layoutX="104.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text layoutX="14.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Received:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="text_received" layoutX="104.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text layoutX="14.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiver:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="text_receiver" layoutX="104.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </Pane>
+                        <TextArea fx:id="text_message" layoutY="127.0" prefHeight="146.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="124.0" />
+                     </children></AnchorPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
+</VBox>

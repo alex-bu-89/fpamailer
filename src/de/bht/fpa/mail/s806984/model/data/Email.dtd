@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT EMAIL (read,received,receiverBCC,receiverCC,receiverTo,sender,sent,subject,text)>
+<!ELEMENT read (#PCDATA)>
+<!ELEMENT received (#PCDATA)>
+<!ELEMENT receiverBCC (#PCDATA)>
+<!ELEMENT receiverCC (#PCDATA)>
+<!ELEMENT receiverTo (#PCDATA)>
+<!ELEMENT sender (#PCDATA)>
+<!ELEMENT sent (#PCDATA)>
+<!ELEMENT subject (#PCDATA)>
+<!ELEMENT text (#PCDATA)>
+

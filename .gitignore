@@ -1,0 +1,7 @@
+.DS_Store
+build
+build.xml
+dist
+hs_err_pid801.log
+manifest.mf
+nbproject
