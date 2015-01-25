@@ -9,4 +9,17 @@
       <property name="javax.persistence.jdbc.password" value=""/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>de.bht.fpa.mail.s806984.model.appLogic.Account</class>
+    <class>de.bht.fpa.mail.s806984.model.data.Component</class>
+    <class>de.bht.fpa.mail.s806984.model.data.Folder</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/fpa?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="alex"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="12345"/>
+      <property name="eclipselink.ddl-generation" value = "drop-and-create-tables"/>
+    </properties>
+  </persistence-unit>
 </persistence>

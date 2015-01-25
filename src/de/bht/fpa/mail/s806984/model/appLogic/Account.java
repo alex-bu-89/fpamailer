@@ -13,6 +13,11 @@ package de.bht.fpa.mail.s806984.model.appLogic;
 import de.bht.fpa.mail.s806984.model.data.Folder;
 import java.io.File;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -22,8 +27,13 @@ import java.io.Serializable;
  * @author Siamak Haschemi, changed by Simone Strippgen
  */
 
+@Entity
 public class Account implements Serializable {
-    
+  
+  @Id
+  @GeneratedValue
+  private long id;
+  
   private static final long serialVersionUID = -7660640539811469762L;
 
   private String name;
@@ -33,7 +43,8 @@ public class Account implements Serializable {
   private String username;
 
   private String password;
-
+  
+  @OneToOne(cascade={CascadeType.PERSIST})
   private Folder top;
   
   public Account() { 

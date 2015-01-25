@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
  */
 public class TestDBDataProvider {
 
-    private static final String TESTDATA_PU = "fpa";
+    private static final String TESTDATA_PU = "test";
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory(TESTDATA_PU);
 
     public static void createAccounts() {

@@ -14,9 +14,13 @@ import java.util.List;
 public class AccountManager implements AccountManagerIF {
     
     private AccountFileDAO accountFileDAO;
+    private AccountDB_DAO accountDBDAO;
     
     public AccountManager(){
         this.accountFileDAO = new AccountFileDAO();
+        //this.accountDBDAO = new AccountDB_DAO();
+        TestDBDataProvider.createAccounts();
+
     }
     
     @Override

@@ -4,19 +4,38 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
  * @author Simone Strippgen
  *
  */
-
+@Entity
 public class Folder extends Component implements Serializable {
-
+    
+    @Id
+    @GeneratedValue
+    private long id;
+    
     private boolean expandable;
+    
+    @Transient
     private transient ArrayList<Component> content;
+    
+    @Transient
     private transient List<Email> emails;
-
+    
+    public Folder() {
+        super(new File(""));
+        content = new ArrayList<Component>();
+        this.expandable = false;
+        emails = new ArrayList<Email>();
+    }
+    
     public Folder(File path, boolean expandable) {
         super(path);
         this.expandable = expandable;

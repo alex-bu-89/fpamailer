@@ -1,5 +1,6 @@
 package de.bht.fpa.mail.s806984.controller;
 
+import de.bht.fpa.mail.s806984.model.account.TestDBDataProvider;
 import de.bht.fpa.mail.s806984.model.appLogic.Account;
 import de.bht.fpa.mail.s806984.model.appLogic.ApplicationLogic;
 import de.bht.fpa.mail.s806984.model.appLogic.ApplicationLogicIF;
@@ -113,6 +114,7 @@ public class FPAMailerLayoutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+                   
         history = new ArrayList<String>();
         Folder folder = new Folder(USER_DIR, true);
         history.add(folder.getPath());
@@ -128,6 +130,7 @@ public class FPAMailerLayoutController implements Initializable {
         addSelectEvent();
         loadTableView();
         addTableViewSelectEvent();
+        
     }
 
     /**
