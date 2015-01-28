@@ -1,12 +1,12 @@
 package de.bht.fpa.mail.s806984.model.account;
 
 import de.bht.fpa.mail.s806984.model.appLogic.Account;
-import java.io.File;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * This class gets test accounts from TestAccountProvider and saves them into
@@ -25,10 +25,11 @@ public class TestDBDataProvider {
         List<Account> accs = TestAccountProvider.createAccounts();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
+
         for (Account a : accs) {
             em.persist(a);
         }
-        trans.commit();
+        trans.commit(); 
         em.close();
     }
 }

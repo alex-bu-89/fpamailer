@@ -16,8 +16,9 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 /**
- *
+ * 
  * @author Jules Doering
+ * @author Alexander Buyanov
  */
 public class AccountDB_DAO implements AccountDAOIF {
     
@@ -40,14 +41,13 @@ public class AccountDB_DAO implements AccountDAOIF {
 
     @Override
     public List<Account> getAllAccounts() {
-        try{
-            Query query = em.createNativeQuery("Select * FROM Account");
+        try{                      
+            Query query = em.createQuery("SELECT a FROM Account a");
             List<Account> accList = (List<Account>) query.getResultList();
-            em.close();
+            //em.close(); // Attempting to execute an operation on a closed EntityManager. So i commented it
             return accList;         
         }catch(PersistenceException e){
             System.out.println(e.getCause());
-            
         }
         return new ArrayList<Account>();
     }
@@ -58,7 +58,7 @@ public class AccountDB_DAO implements AccountDAOIF {
             et.begin();
             em.merge(acc);
             et.commit();
-            em.close();
+            //em.close(); // Attempting to execute an operation on a closed EntityManager.
             return acc;
             
         }catch(PersistenceException e){
@@ -74,7 +74,7 @@ public class AccountDB_DAO implements AccountDAOIF {
             et.begin();
             em.merge(acc);
             et.commit();
-            em.close();
+            //em.close(); // Attempting to execute an operation on a closed EntityManager.
             return true;
             
         }catch(PersistenceException e){

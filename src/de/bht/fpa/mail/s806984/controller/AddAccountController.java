@@ -26,7 +26,7 @@ class AddAccountController implements Initializable {
     private final String ERROR_MESSAGE_FOLDER = "Account already exists, choose another name";
     private final String UPDATE_BUTTON = "Update";
     
-    Account account;
+    private Account account;
     
     @FXML
     private TextField addName;
@@ -66,6 +66,7 @@ class AddAccountController implements Initializable {
         
         loadMenu(addCancel);
         loadMenu(addSave);
+       
     }
 
     private void loadMenu(Button button) {
@@ -147,16 +148,16 @@ class AddAccountController implements Initializable {
             return;
         }
         
-        // creates new account fromt text fields
-        Account newAcc = new Account(   addName.getText(),
-                                        addHost.getText(),
-                                        addUsername.getText(),
-                                        addPassword.getText()
-        );
-        applicationLogic.updateAccount(newAcc);
+        // update this.account fromt text fields
+        account.setName(addName.getText());
+        account.setHost(addHost.getText());
+        account.setUsername(addUsername.getText());
+        account.setPassword(addPassword.getText());
+
+        applicationLogic.updateAccount(account);
         controller.loadSubMenu();
         
-        System.out.println(newAcc);
+        System.out.println(account);
         Stage window = (Stage) addCancel.getScene().getWindow();
         window.close();
         

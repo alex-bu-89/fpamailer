@@ -5,6 +5,7 @@ import de.bht.fpa.mail.s806984.model.account.AccountManagerIF;
 import de.bht.fpa.mail.s806984.model.appLogic.Account;
 
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -13,19 +14,17 @@ import java.util.List;
  */
 public class AccountManager implements AccountManagerIF {
     
-    private AccountFileDAO accountFileDAO;
+    //private AccountFileDAO accountFileDAO;
     private AccountDB_DAO accountDBDAO;
     
     public AccountManager(){
-        this.accountFileDAO = new AccountFileDAO();
-        //this.accountDBDAO = new AccountDB_DAO();
-        TestDBDataProvider.createAccounts();
-
+        //this.accountFileDAO = new AccountFileDAO();
+        this.accountDBDAO = new AccountDB_DAO();    
     }
     
     @Override
     public Account getAccount(String name) {
-        for(Account acc : accountFileDAO.getAllAccounts()){
+        for(Account acc : accountDBDAO.getAllAccounts()){
             if(name.equals(acc.getName())){
                 return acc;
             }
@@ -35,18 +34,18 @@ public class AccountManager implements AccountManagerIF {
 
     @Override
     public List<Account> getAllAccounts() {
-        return accountFileDAO.getAllAccounts();
+        return accountDBDAO.getAllAccounts();
     }
 
     @Override
     public boolean saveAccount(Account acc) {
-        accountFileDAO.saveAccount(acc);
+        accountDBDAO.saveAccount(acc);
         return true;
     }
 
     @Override
     public boolean updateAccount(Account account) {
-        return accountFileDAO.updateAccount(account);
+        return accountDBDAO.updateAccount(account);
     }    
 }
 
