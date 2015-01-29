@@ -2,11 +2,18 @@ package de.bht.fpa.mail.s806984.model.appLogic;
 
 import de.bht.fpa.mail.s806984.controller.FPAMailerLayoutController;
 import de.bht.fpa.mail.s806984.model.account.AccountManager;
+import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapConnectionHelper;
+import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapFolderManager;
+import de.bht.fpa.mail.s806984.model.data.Component;
 import de.bht.fpa.mail.s806984.model.data.Email;
 import de.bht.fpa.mail.s806984.model.data.Folder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.mail.Store;
 
 /**
  * ApplicationLogic executes facade pattern
@@ -21,6 +28,7 @@ public class ApplicationLogic implements ApplicationLogicIF {
     private EmailManager mailManager;
     private FPAMailerLayoutController controller;
     private AccountManager accountManager;
+    private IMapFolderManager iFolderManager;
 
     public ApplicationLogic(Folder f, FPAMailerLayoutController controller) {             
         this.topFolder = f;
@@ -49,7 +57,7 @@ public class ApplicationLogic implements ApplicationLogicIF {
      */
     @Override
     public void loadContent(Folder folder) {
-        this.fileManager.loadContent(folder);
+        this.iFolderManager.loadContent(folder);
     }
 
     /**
@@ -101,8 +109,8 @@ public class ApplicationLogic implements ApplicationLogicIF {
         this.topFolder = folder;
         this.fileManager = new FileManager(file);
         this.mailManager = new EmailManager(folder);
-        this.controller.loadTree(folder);
-        controller.addHistory(folder.getPath());
+//        this.controller.loadTree(folder);
+//        controller.addHistory(folder.getPath());
     }
 
     /**
@@ -123,7 +131,17 @@ public class ApplicationLogic implements ApplicationLogicIF {
 
     @Override
     public void openAccount(String name) {
-        changeDirectory(new File(getAccount(name).getTop().getPath()));
+        Account a = getAccount(name);
+        System.out.println(a);    
+        iFolderManager = new IMapFolderManager(a);
+        //changeDirectory(new File(iFolderManager.getTopFolder()));
+        changeAccount(this.iFolderManager.getTopFolder());
+  
+    }
+    
+    private void changeAccount(Folder f) {
+        this.topFolder = f;
+        this.controller.loadTree(f);
     }
 
     @Override
@@ -149,5 +167,5 @@ public class ApplicationLogic implements ApplicationLogicIF {
     public void updateAccount(Account account) {
         accountManager.updateAccount(account);
     }
-    
+ 
 }

@@ -3,8 +3,15 @@ package de.bht.fpa.mail.s806984.model.account;
 import de.bht.fpa.mail.s806984.model.account.AccountFileDAO;
 import de.bht.fpa.mail.s806984.model.account.AccountManagerIF;
 import de.bht.fpa.mail.s806984.model.appLogic.Account;
+import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapConnectionHelper;
+import java.util.ArrayList;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Folder;
+import javax.mail.MessagingException;
+import javax.mail.Store;
 import javax.persistence.Query;
 
 /**
@@ -19,7 +26,7 @@ public class AccountManager implements AccountManagerIF {
     
     public AccountManager(){
         //this.accountFileDAO = new AccountFileDAO();
-        this.accountDBDAO = new AccountDB_DAO();    
+        this.accountDBDAO = new AccountDB_DAO();         
     }
     
     @Override

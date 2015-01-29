@@ -72,5 +72,9 @@ public class Folder extends Component implements Serializable {
 //        }
 //        return this.getName();    
 //    }
+
+    public void setExpandable(boolean b) {
+        this.expandable = b;
+    }
     
  }

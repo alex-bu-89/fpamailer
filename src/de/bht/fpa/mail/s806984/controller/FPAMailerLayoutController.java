@@ -120,9 +120,9 @@ public class FPAMailerLayoutController implements Initializable {
         history.add(folder.getPath());
         // ??
         applicationLogic = new ApplicationLogic(folder, this);
-        
+        //applicationLogic.openAccount("google-test");
         // loads treeview
-        loadTree(folder);
+        //loadTree(folder);
         
         // loads menu
         loadMenuBar();
@@ -196,6 +196,9 @@ public class FPAMailerLayoutController implements Initializable {
                         history.add(file.getAbsolutePath());
                         //loadTree(new Folder(file, true));
                         applicationLogic.changeDirectory(file);
+                        Folder folder = new Folder(file, true);
+                        loadTree(folder);
+                        addHistory(folder.getPath());
                     }
                 } catch (NullPointerException e) {
                     System.out.println("Something wrong width filechooser. Maybe folder is not accessible");
@@ -236,6 +239,9 @@ public class FPAMailerLayoutController implements Initializable {
                 System.out.println("Open acc: " + source.getText());
                 System.out.println(applicationLogic.getAccount(source.getText()));
                 applicationLogic.openAccount(source.getText());
+                System.out.println("Top Folder ist " + applicationLogic.getTopFolder());                              
+//                loadTree(applicationLogic.getTopFolder());
+//                addHistory(applicationLogic.getTopFolder().getPath());
             }
             if (source.getParentMenu() == this.editAccount) {
                 
@@ -310,7 +316,7 @@ public class FPAMailerLayoutController implements Initializable {
     private void loadContent(TreeItem<Component> item) {
         item.getChildren().clear();
         Folder f = (Folder) item.getValue();
-        f.getComponents().clear();
+        //f.getComponents().clear();
         applicationLogic.loadContent(f);
         for (Component c : f.getComponents()) {
             item.getChildren().add(new TreeItem(c));
