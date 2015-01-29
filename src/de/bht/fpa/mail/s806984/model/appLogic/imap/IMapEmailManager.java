@@ -4,6 +4,8 @@ import de.bht.fpa.mail.s806984.model.appLogic.Account;
 import de.bht.fpa.mail.s806984.model.appLogic.EmailManagerIF;
 import de.bht.fpa.mail.s806984.model.data.Email;
 import de.bht.fpa.mail.s806984.model.data.Folder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Store;
@@ -30,19 +32,31 @@ public class IMapEmailManager implements EmailManagerIF {
 
     @Override
     public void loadEmails(Folder f) {
-        if(!f.getEmails().isEmpty()){
-            return;
+        
+        try {
+            javax.mail.Folder iFolder = store.getFolder(f.getName());
+            iFolder.open(javax.mail.Folder.READ_ONLY);
+            
+            System.out.println(store.getFolder(f.getName()).getMessages());
+            
+//        if(!f.getEmails().isEmpty()){
+//            throw new IllegalArgumentException("The emails in folder must not be empty.");
+//        }
+//        try{
+//
+//            Message[] ms = store.getFolder(f.getName()).getMessages();
+//            System.out.println("test");
+//            for(Message m : ms){
+//                Email mail = IMapEmailConverter.convertMessage(m);
+//                f.addEmail(mail);
+//                System.out.println(mail);
+//            }
+//        }catch(MessagingException e){
+//            System.err.println(e.getMessage());
+//        }    
+        } catch (MessagingException ex) {
+            Logger.getLogger(IMapEmailManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try{
-            Message[] ms = store.getFolder(f.getName()).getMessages();
-            for(Message m : ms){
-                Email mail = IMapEmailConverter.convertMessage(m);
-                f.addEmail(mail);
-                System.out.println(mail);
-            }
-        }catch(MessagingException e){
-            System.err.println(e.getMessage());
-        }    
     }
     
 }

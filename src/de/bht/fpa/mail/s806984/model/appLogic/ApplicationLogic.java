@@ -111,8 +111,8 @@ public class ApplicationLogic implements ApplicationLogicIF {
         this.topFolder = folder;
         this.fileManager = new FileManager(file);
         this.mailManager = new EmailManager(folder);
-//        this.controller.loadTree(folder);
-//        controller.addHistory(folder.getPath());
+        //        this.controller.loadTree(folder);
+        //        controller.addHistory(folder.getPath());
     }
 
     /**

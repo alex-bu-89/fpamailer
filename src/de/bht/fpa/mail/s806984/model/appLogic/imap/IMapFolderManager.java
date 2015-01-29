@@ -43,7 +43,7 @@ public class IMapFolderManager implements FolderManagerIF {
      @Override
    public void loadContent(Folder f) {
         if(!f.getComponents().isEmpty()){
-            return;
+            throw new IllegalArgumentException("The Commponent must not be empty.");
         }
         try{
             for(javax.mail.Folder folder : store.getFolder(f.getPath()).list()){

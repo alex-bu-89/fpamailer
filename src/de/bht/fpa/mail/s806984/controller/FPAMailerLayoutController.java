@@ -367,52 +367,46 @@ public class FPAMailerLayoutController implements Initializable {
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
             TreeItem<Component> selectedItem = (TreeItem<Component>) newValue;
                 if (newValue != null){
-                    try {
-                        // clear old email info
+                    // clear old email info
                         emailData.clear();
                         filteredData.clear();
                         countEmails.setText("");
-                        applicationLogic.getTopFolder().getEmails().clear();
-
+                        //applicationLogic.getTopFolder().getEmails().clear();
                         File file = new File(selectedItem.getValue().getPath());
-                        Folder folder = new Folder(file, hasSubfolder(file));
+                        Folder folder = new Folder(file, true);
                         //EmailManagerIF emailManager = new EmailManager(folder);
-
-                        applicationLogic.loadEmails(folder);
-
-                        // counts emails and set it in current treeItem 
-                        folder.setName(folder.getName()+" ("+ applicationLogic.getTopFolder().getEmails().size() +")");
-                        selectedItem.setValue(folder);
-
-                        System.out.println("Selected Directory: " + applicationLogic.getTopFolder().getPath());
-                        System.out.println("Number of Emails: " + applicationLogic.getTopFolder().getEmails().size());
                         
-//                        for(int i = 0; i < applicationLogic.getTopFolder().getEmails().size(); i++){
-//                            Email email = applicationLogic.getTopFolder().getEmails().get(i);
+                        applicationLogic.loadEmails(folder);
+//
+//                        // counts emails and set it in current treeItem 
+//                        folder.setName(folder.getName()+" ("+ applicationLogic.getTopFolder().getEmails().size() +")");
+//                        selectedItem.setValue(folder);
+//
+//                        System.out.println("Selected Directory: " + applicationLogic.getTopFolder().getPath());
+//                        System.out.println("Number of Emails: " + applicationLogic.getTopFolder().getEmails().size());
+//                        
+////                        for(int i = 0; i < applicationLogic.getTopFolder().getEmails().size(); i++){
+////                            Email email = applicationLogic.getTopFolder().getEmails().get(i);
+////                            System.out.println(email.toString());
+////                            emailData.add(email);               
+////                            table.setItems(emailData);                    
+////                        }
+//                        
+//                        List<Email> emailList = applicationLogic.getTopFolder().getEmails();
+//                        
+//                        for(int i = 0; i < emailList.size(); i++){
+//                            Email email = emailList.get(i);
 //                            System.out.println(email.toString());
 //                            emailData.add(email);               
-//                            table.setItems(emailData);                    
 //                        }
-                        
-                        List<Email> emailList = applicationLogic.getTopFolder().getEmails();
-                        
-                        for(int i = 0; i < emailList.size(); i++){
-                            Email email = emailList.get(i);
-                            System.out.println(email.toString());
-                            emailData.add(email);               
-                        }
-                        
-                        table.setItems(emailData);                    
-
-                        // set received column sorted by default
-                        t_received.setSortType(TableColumn.SortType.ASCENDING);
-                        table.getSortOrder().add(t_received); 
-
-                        System.out.println("--------------------\n");
-                    } catch (Exception e) {
-                        System.out.println("The File could not be created by selected item");
-                        e.getStackTrace();
-                    }
+//                        
+//                        table.setItems(emailData);                    
+//
+//                        // set received column sorted by default
+//                        t_received.setSortType(TableColumn.SortType.ASCENDING);
+//                        table.getSortOrder().add(t_received); 
+//
+//                        System.out.println("--------------------\n");
                 }
             }
       });
