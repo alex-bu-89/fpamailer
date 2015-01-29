@@ -31,18 +31,17 @@ public class IMapEmailManager implements EmailManagerIF {
     }
 
     @Override
-    public void loadEmails(Folder f) {
-        
+    public void loadEmails(Folder f) {       
         try {
             javax.mail.Folder iFolder = store.getFolder(f.getName());
+            System.out.println(iFolder.getFullName());
+
             iFolder.open(javax.mail.Folder.READ_ONLY);
 
             Message[] ms = iFolder.getMessages();
-            System.out.println("test");
             for(Message m : ms){
                 Email mail = IMapEmailConverter.convertMessage(m);
                 f.addEmail(mail);
-                System.out.println(mail);
             }   
         } catch (MessagingException ex) {
             Logger.getLogger(IMapEmailManager.class.getName()).log(Level.SEVERE, null, ex);

@@ -378,33 +378,33 @@ public class FPAMailerLayoutController implements Initializable {
                         
                         applicationLogic.loadEmails(folder);
 //
-//                        // counts emails and set it in current treeItem 
+                        // counts emails and set it in current treeItem 
 //                        folder.setName(folder.getName()+" ("+ applicationLogic.getTopFolder().getEmails().size() +")");
 //                        selectedItem.setValue(folder);
 //
 //                        System.out.println("Selected Directory: " + applicationLogic.getTopFolder().getPath());
 //                        System.out.println("Number of Emails: " + applicationLogic.getTopFolder().getEmails().size());
-//                        
-////                        for(int i = 0; i < applicationLogic.getTopFolder().getEmails().size(); i++){
-////                            Email email = applicationLogic.getTopFolder().getEmails().get(i);
-////                            System.out.println(email.toString());
-////                            emailData.add(email);               
-////                            table.setItems(emailData);                    
-////                        }
-//                        
-//                        List<Email> emailList = applicationLogic.getTopFolder().getEmails();
-//                        
-//                        for(int i = 0; i < emailList.size(); i++){
-//                            Email email = emailList.get(i);
+                        
+//                        for(int i = 0; i < folder.getEmails().size(); i++){
+//                            Email email = folder.getEmails().get(i);
 //                            System.out.println(email.toString());
 //                            emailData.add(email);               
+//                            table.setItems(emailData);                    
 //                        }
-//                        
-//                        table.setItems(emailData);                    
-//
-//                        // set received column sorted by default
-//                        t_received.setSortType(TableColumn.SortType.ASCENDING);
-//                        table.getSortOrder().add(t_received); 
+                        
+                        List<Email> emailList = folder.getEmails();
+                        
+                        for(int i = 0; i < emailList.size(); i++){
+                            Email email = emailList.get(i);
+                            System.out.println(email.toString());
+                            emailData.add(email);               
+                        }
+                        
+                        table.setItems(emailData);                    
+
+                        // set received column sorted by default
+                        t_received.setSortType(TableColumn.SortType.ASCENDING);
+                        table.getSortOrder().add(t_received); 
 //
 //                        System.out.println("--------------------\n");
                 }
