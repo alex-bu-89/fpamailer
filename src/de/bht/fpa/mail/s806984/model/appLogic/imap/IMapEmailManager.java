@@ -37,7 +37,7 @@ public class IMapEmailManager implements EmailManagerIF {
             javax.mail.Folder iFolder = store.getFolder(f.getName());
             iFolder.open(javax.mail.Folder.READ_ONLY);
             
-            System.out.println(store.getFolder(f.getName()).getMessages());
+            System.out.println(iFolder.getMessages());
             
 //        if(!f.getEmails().isEmpty()){
 //            throw new IllegalArgumentException("The emails in folder must not be empty.");
