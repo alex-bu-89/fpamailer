@@ -36,24 +36,14 @@ public class IMapEmailManager implements EmailManagerIF {
         try {
             javax.mail.Folder iFolder = store.getFolder(f.getName());
             iFolder.open(javax.mail.Folder.READ_ONLY);
-            
-            System.out.println(iFolder.getMessages());
-            
-//        if(!f.getEmails().isEmpty()){
-//            throw new IllegalArgumentException("The emails in folder must not be empty.");
-//        }
-//        try{
-//
-//            Message[] ms = store.getFolder(f.getName()).getMessages();
-//            System.out.println("test");
-//            for(Message m : ms){
-//                Email mail = IMapEmailConverter.convertMessage(m);
-//                f.addEmail(mail);
-//                System.out.println(mail);
-//            }
-//        }catch(MessagingException e){
-//            System.err.println(e.getMessage());
-//        }    
+
+            Message[] ms = iFolder.getMessages();
+            System.out.println("test");
+            for(Message m : ms){
+                Email mail = IMapEmailConverter.convertMessage(m);
+                f.addEmail(mail);
+                System.out.println(mail);
+            }   
         } catch (MessagingException ex) {
             Logger.getLogger(IMapEmailManager.class.getName()).log(Level.SEVERE, null, ex);
         }
