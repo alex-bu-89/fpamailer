@@ -3,6 +3,7 @@ package de.bht.fpa.mail.s806984.model.appLogic;
 import de.bht.fpa.mail.s806984.controller.FPAMailerLayoutController;
 import de.bht.fpa.mail.s806984.model.account.AccountManager;
 import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapConnectionHelper;
+import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapEmailManager;
 import de.bht.fpa.mail.s806984.model.appLogic.imap.IMapFolderManager;
 import de.bht.fpa.mail.s806984.model.data.Component;
 import de.bht.fpa.mail.s806984.model.data.Email;
@@ -29,6 +30,7 @@ public class ApplicationLogic implements ApplicationLogicIF {
     private FPAMailerLayoutController controller;
     private AccountManager accountManager;
     private IMapFolderManager iFolderManager;
+    private IMapEmailManager iEmailsManager;
 
     public ApplicationLogic(Folder f, FPAMailerLayoutController controller) {             
         this.topFolder = f;
@@ -94,7 +96,7 @@ public class ApplicationLogic implements ApplicationLogicIF {
      */
     @Override
     public void loadEmails(Folder folder) {
-        this.mailManager.loadEmails(folder);
+        this.iEmailsManager.loadEmails(folder);
     }
     
     /**
@@ -134,6 +136,7 @@ public class ApplicationLogic implements ApplicationLogicIF {
         Account a = getAccount(name);
         System.out.println(a);    
         iFolderManager = new IMapFolderManager(a);
+        iEmailsManager = new IMapEmailManager(a);
         //changeDirectory(new File(iFolderManager.getTopFolder()));
         changeAccount(this.iFolderManager.getTopFolder());
   
@@ -141,7 +144,6 @@ public class ApplicationLogic implements ApplicationLogicIF {
     
     private void changeAccount(Folder f) {
         this.topFolder = f;
-        this.controller.loadTree(f);
     }
 
     @Override

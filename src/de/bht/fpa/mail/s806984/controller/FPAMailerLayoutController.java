@@ -118,9 +118,12 @@ public class FPAMailerLayoutController implements Initializable {
         history = new ArrayList<String>();
         Folder folder = new Folder(USER_DIR, true);
         history.add(folder.getPath());
-        // ??
+        
         applicationLogic = new ApplicationLogic(folder, this);
-        //applicationLogic.openAccount("google-test");
+        
+        applicationLogic.openAccount("Google-Test");
+        loadTree(applicationLogic.getTopFolder());
+       
         // loads treeview
         //loadTree(folder);
         
@@ -197,8 +200,8 @@ public class FPAMailerLayoutController implements Initializable {
                         //loadTree(new Folder(file, true));
                         applicationLogic.changeDirectory(file);
                         Folder folder = new Folder(file, true);
-                        loadTree(folder);
-                        addHistory(folder.getPath());
+                        //loadTree(folder);
+                        //addHistory(folder.getPath());
                     }
                 } catch (NullPointerException e) {
                     System.out.println("Something wrong width filechooser. Maybe folder is not accessible");
@@ -239,8 +242,7 @@ public class FPAMailerLayoutController implements Initializable {
                 System.out.println("Open acc: " + source.getText());
                 System.out.println(applicationLogic.getAccount(source.getText()));
                 applicationLogic.openAccount(source.getText());
-                System.out.println("Top Folder ist " + applicationLogic.getTopFolder());                              
-//                loadTree(applicationLogic.getTopFolder());
+                loadTree(applicationLogic.getTopFolder());
 //                addHistory(applicationLogic.getTopFolder().getPath());
             }
             if (source.getParentMenu() == this.editAccount) {

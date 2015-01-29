@@ -23,21 +23,21 @@ public class IMapFolderManager implements FolderManagerIF {
 
     public IMapFolderManager(Account account){
         this.account = account;
+        this.topFolder = account.getTop();
+        this.store = IMapConnectionHelper.connect(account);
     }
     
     @Override
     public Folder getTopFolder() {
-        Store store = IMapConnectionHelper.connect(account);
         try{
             javax.mail.Folder topFolder = store.getDefaultFolder();  
-            Folder top = new Folder();
-            top.setName(account.getName());
-            top.setPath(topFolder.getFullName());
-            return top;
+            Folder f = new Folder(new File(topFolder.getName()), true);
+            f.setPath(topFolder.getFullName());
+            return f;
         }catch(MessagingException e){
             System.err.println(e.getMessage());
         }
-        return null;
+        return topFolder;
     }
 
      @Override
@@ -45,23 +45,14 @@ public class IMapFolderManager implements FolderManagerIF {
         if(!f.getComponents().isEmpty()){
             return;
         }
-        Store store = IMapConnectionHelper.connect(account);
         try{
-            for(javax.mail.Folder folder : store.getFolder(f.getName()).list()){
-                Folder subFolder = new Folder();
-                subFolder.setName(folder.getName());
-                subFolder.setPath(folder.getFullName());
-                subFolder.setExpandable(folder.list().length > 0);
-                f.addComponent(subFolder);
+            for(javax.mail.Folder folder : store.getFolder(f.getPath()).list()){
+                Folder sf = new Folder(new File(folder.getName()), folder.list().length > 0);
+                sf.setPath(folder.getFullName());
+                f.addComponent(sf);
             }
         }catch(MessagingException e){
             System.err.println(e.getMessage());
         }
-    }
-    
-    public boolean isConnected(){      
-        return this.store.isConnected();
-    }
-
-    
+    }  
 }
